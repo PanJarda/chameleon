@@ -85,7 +85,9 @@
                     }
                     .hovnobook_code {
                         word-break: normal;
+                        white-space: pre-line;
                         background-color: #f7f7f9;
+                        font-family: monospace;
                         padding: 2rem;
                     }
 
@@ -97,6 +99,9 @@
                     }
                     .s {
                         color: #d44950;
+                    }
+                    .js {
+                        white-space: pre-wrap;
                     }
                 </style>
                 <link rel="stylesheet">
@@ -152,9 +157,9 @@
                                 <div class="hovnobook_html">
                                     <xsl:value-of select="$nodestring" disable-output-escaping="yes"/>
                                 </div>
-                                <pre class="hovnobook_code">
+                                <div class="hovnobook_code">
                                     <xsl:value-of select="$syntax_highlighted" disable-output-escaping="yes"/>
-                                </pre>
+                                </div>
                                 <div class="hovnobook_html">
                                     <xsl:value-of select="description" disable-output-escaping="yes"/>
                                 </div>
@@ -254,7 +259,7 @@
         <xsl:param name="level" />
         <xsl:variable name="tabs">
             <xsl:call-template name="dup">
-                <xsl:with-param name="input"><xsl:text>    </xsl:text></xsl:with-param>
+                <xsl:with-param name="input"><xsl:text>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</xsl:text></xsl:with-param>
                 <xsl:with-param name="count" select="$level" />
             </xsl:call-template>
         </xsl:variable>
@@ -301,13 +306,15 @@
         <xsl:param name="level" />
         <xsl:variable name="tabs">
             <xsl:call-template name="dup">
-                <xsl:with-param name="input"><xsl:text>    </xsl:text></xsl:with-param>
+                <xsl:with-param name="input"><xsl:text>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</xsl:text></xsl:with-param>
                 <xsl:with-param name="count" select="$level" />
             </xsl:call-template>
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="$parent = 'script' or ($parent = 'style')">
+                <xsl:text>&lt;div class="js"&gt;</xsl:text>
                 <xsl:value-of select="."/>
+                <xsl:text>&lt;/div&gt;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:if test="normalize-space() != ''">

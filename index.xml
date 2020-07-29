@@ -5,6 +5,11 @@
         <story>
             <name>Klasicky button</name>
             <code>
+                <style>
+                    .fff {
+                        color: green;
+                    }
+                </style>
                 <button id="button" class="hoffdsfsafvnobutton">Ahoj</button>
                 <button id="button" class="hoffdsfsafvnobutton" hover="">Button hovered</button>
                 <script>
