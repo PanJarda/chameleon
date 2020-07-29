@@ -10,17 +10,17 @@
                     Hovnobook
                 </title>
                 <style>
-                    .hovnobook-html {
+                    html {
                         font-size: 62.5%;
                     }
 
-                    .hovnobook-body {
+                    body {
                         font-size: 1.6rem;
                         font-family: sans-serif;
                     }
 
-                    .hovnobook-body,
-                    .hovnobook-html {
+                    body,
+                    html {
                         margin: 0;
                         padding: 0;
                     }
@@ -181,6 +181,31 @@
                         collection = document.getElementsByClassName('hovnobook_code');
                         for (e of collection)
                             processHtml(e);
+
+
+                        var id = 'simulatedStyle';
+
+                        var generateEvent = function(selector) {
+                            var style = "";
+                            for (var i in document.styleSheets) {
+                                var rules = document.styleSheets[i].cssRules;
+                                for (var r in rules) {
+                                    if(rules[r].cssText &amp;&amp; rules[r].selectorText){
+                                        if(rules[r].selectorText.indexOf(selector) > -1){
+                                            var regex = new RegExp(selector,"g")
+                                            var text = rules[r].cssText.replace(regex,"[data-hover=\"true\"]");
+                                            style += text+"\n";
+                                        }
+                                    }
+                                }
+                            }
+                            var el = document.createElement('style');
+                            el.id = id;
+                            el.innerHTML = style;
+                            document.head.appendChild(el);
+                        };
+
+                        generateEvent(":hover");
                     };
                 </script>
             </body>
@@ -206,11 +231,18 @@
     </xsl:template>
 
     <xsl:template match="@*" mode="serialize">
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="name()"/>
-        <xsl:text>="</xsl:text>
-        <xsl:value-of select="."/>
-        <xsl:text>"</xsl:text>
+        <xsl:choose>
+            <xsl:when test="name() = 'hover'">
+                <xsl:text>data-hover="true"</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="name()"/>
+                <xsl:text>="</xsl:text>
+                <xsl:value-of select="."/>
+                <xsl:text>"</xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="text()" mode="serialize">
@@ -253,12 +285,14 @@
     </xsl:template>
 
     <xsl:template match="@*" mode="highlight_syntax">
-        <xsl:text> &lt;span class="na"&gt;</xsl:text>
-        <xsl:value-of select="name()"/>
-        <xsl:text>=&lt;/span&gt;</xsl:text>
-        <xsl:text>&lt;span class="s"&gt;"</xsl:text>
-        <xsl:value-of select="."/>
-        <xsl:text>"&lt;/span&gt;</xsl:text>
+        <xsl:if test="name() != 'hover'">
+            <xsl:text> &lt;span class="na"&gt;</xsl:text>
+            <xsl:value-of select="name()"/>
+            <xsl:text>=&lt;/span&gt;</xsl:text>
+            <xsl:text>&lt;span class="s"&gt;"</xsl:text>
+            <xsl:value-of select="."/>
+            <xsl:text>"&lt;/span&gt;</xsl:text>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="text()" mode="highlight_syntax">
@@ -272,7 +306,7 @@
         <xsl:if test="normalize-space() != ''">
             <xsl:value-of select="$tabs"/>
         </xsl:if>
-        <xsl:value-of select="normalize-space()"/>
+            <xsl:value-of select="normalize-space()"/>
         <xsl:if test="normalize-space() != ''">
             <xsl:text>&#xa;</xsl:text>
         </xsl:if>

@@ -5,9 +5,9 @@
         <story>
             <name>Klasicky button</name>
             <code>
-                <button class="hoffdsfsafvnobutton">Ahoj</button>
+                <button id="button" class="hoffdsfsafvnobutton" hover="">Ahoj</button>
                 <script>
-                    console.log('ahojfsdf');
+                    console.log('ahoj');
                 </script>
             </code>
             <description><![CDATA[
