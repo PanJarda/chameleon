@@ -3,24 +3,24 @@
     <xsl:output method="html" encoding="utf-8" indent="yes" doctype-system=""/>
     <xsl:template match="/chameleon">
 
-        <html>
+        <html class="hovnobook-html">
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <title>
                     Hovnobook
                 </title>
                 <style>
-                    html {
+                    .hovnobook-html {
                         font-size: 62.5%;
                     }
 
-                    body {
+                    .hovnobook-body {
                         font-size: 1.6rem;
                         font-family: sans-serif;
                     }
 
-                    html,
-                    body {
+                    .hovnobook-body,
+                    .hovnobook-html {
                         margin: 0;
                         padding: 0;
                     }
@@ -105,7 +105,7 @@
                     </xsl:attribute>
                 </link>
             </head>
-            <body>
+            <body class="hovnobook-body">
                 <div class="hovnobook_tabs_container">
                     <xsl:for-each select="component">
                         <label class="hovnobook_tab_label">
