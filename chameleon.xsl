@@ -268,6 +268,7 @@
                 <xsl:text>&lt;span class="nt"&gt;<![CDATA[&gt;]]>&lt;/span&gt;&#xa;</xsl:text>
 
                 <xsl:apply-templates mode="highlight_syntax">
+                    <xsl:with-param name="parent" select="name()"/>
                     <xsl:with-param name="level" select="$level + 1"/>
                 </xsl:apply-templates>
 
@@ -296,6 +297,7 @@
     </xsl:template>
 
     <xsl:template match="text()" mode="highlight_syntax">
+        <xsl:param name="parent" />
         <xsl:param name="level" />
         <xsl:variable name="tabs">
             <xsl:call-template name="dup">
@@ -303,10 +305,17 @@
                 <xsl:with-param name="count" select="$level" />
             </xsl:call-template>
         </xsl:variable>
-        <xsl:if test="normalize-space() != ''">
-            <xsl:value-of select="$tabs"/>
-        </xsl:if>
-            <xsl:value-of select="normalize-space()"/>
+        <xsl:choose>
+            <xsl:when test="$parent = 'script' or ($parent = 'style')">
+                <xsl:value-of select="."/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:if test="normalize-space() != ''">
+                    <xsl:value-of select="$tabs"/>
+                </xsl:if>
+                <xsl:value-of select="normalize-space()"/>
+            </xsl:otherwise>
+        </xsl:choose>
         <xsl:if test="normalize-space() != ''">
             <xsl:text>&#xa;</xsl:text>
         </xsl:if>

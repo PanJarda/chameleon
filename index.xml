@@ -5,9 +5,15 @@
         <story>
             <name>Klasicky button</name>
             <code>
-                <button id="button" class="hoffdsfsafvnobutton" hover="">Ahoj</button>
+                <button id="button" class="hoffdsfsafvnobutton">Ahoj</button>
+                <button id="button" class="hoffdsfsafvnobutton" hover="">Button hovered</button>
                 <script>
-                    console.log('ahoj');
+                    console.log('ahojfsdfsfsafs');
+                    var ahoj = function() {
+                        var vvv = 1;
+                        console.log(vvv);
+                    }
+                    ahoj();
                 </script>
             </code>
             <description><![CDATA[
