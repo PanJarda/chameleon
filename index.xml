@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="chameleon.xsl" ?>
+<chameleon style="style.css">
+    <component name="Button">
+        <story>
+            <name>Klasicky button</name>
+            <code>
+                <button class="hoffdsfsafvnobutton">Ahoj</button>
+                <script>
+                    console.log('ahojfsdf');
+                </script>
+            </code>
+            <description><![CDATA[
+
+                <p>fff</p>
+                <code>.classa</code> Toto je moje zpicena komponenta
+            
+            ]]>
+            </description>
+        </story>
+    </component>
+    <component name="Media object">
+        <story>
+            <name>Klasicky pouziti media objectu</name>
+            <code>
+                <div class="media">
+                    <div class="media_left">
+                        <p>Media left</p>
+                    </div>
+                    <div class="media_body">
+                        Ahoj
+                    </div>
+                </div>
+            </code>
+            <description><![CDATA[
+
+                Toto je media object
+                
+            ]]></description>
+        </story>
+        <story>
+            <name>Prdel</name>
+            <code>
+                <div class="media">
+                    <div class="media_left">
+                        <img src="prdel.png" alt=""></img>
+                    </div>
+                    <div class="media_body">
+                        Ahoj
+                    </div>
+                </div>
+            </code>
+            <description><![CDATA[
+
+                Toto je media object s obrazkem.
+
+            ]]></description>
+        </story>
+    </component>
+    <component name="Date picker">
+        <story>
+            <code>
+                <input type="Date" />
+            </code>
+            <description><![CDATA[
+
+                Toto je datepicker
+
+            ]]></description>
+        </story>
+    </component>
+</chameleon>
