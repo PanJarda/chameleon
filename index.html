@@ -1,10 +1,10 @@
 <!DOCTYPE html SYSTEM "">
-<html class="hovnobook-html">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>
-                    Hovnobook
+                    Component system
                 </title>
 <style>
                     html {
@@ -16,8 +16,8 @@
                         font-family: sans-serif;
                     }
 
-                    body,
-                    html {
+                    html,
+                    body {
                         margin: 0;
                         padding: 0;
                     }
@@ -30,7 +30,7 @@
                         padding: 10px;
                         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                         display: block;
-                        color: #fff;
+                        color: #333;
                         cursor: pointer;
                         user-select: none;
                     }
@@ -40,10 +40,11 @@
                         color: #2652CC;
                     }
 
-                    .hovnobook_tabs_container{
+                    .hovnobook_tabs_container {
                         position: relative;
-                        background: #2652CC;
                         width: 100%;
+                        background: #fafafa;
+                        border-right: 1px solid rgba(0,0,0,.07);
                     }
 
                     .hovnobook_tab_label:hover {
@@ -68,11 +69,12 @@
 
                     @media screen and (min-width: 400px) {
                         body {
-                            padding-left: 200px;
+                            max-width: 800px;
+                            margin: 0 auto;
                         }
 
                         .hovnobook_tabs_container {
-                            width: 200px;
+                            width: 300px;
                             position: fixed;
                             left: 0;
                             bottom: 0;
@@ -82,9 +84,7 @@
                     }
                     .hovnobook_code {
                         word-break: normal;
-                        white-space: pre-line;
                         background-color: #f7f7f9;
-                        font-family: monospace;
                         padding: 2rem;
                     }
 
@@ -101,125 +101,128 @@
                         white-space: pre;
                     }
                 </style>
+<style>#hovnobook_tab1:checked ~ .hovnobook_tabs_container > .hovnobook_tab_label1,
+#hovnobook_tab2:checked ~ .hovnobook_tabs_container > .hovnobook_tab_label2,
+#hovnobook_tab3:checked ~ .hovnobook_tabs_container > .hovnobook_tab_label3
+                        {
+                            background-color: blue;
+                            color: white;
+                        }
+                    #hovnobook_tab1:checked ~ .hovnobook_main > .hovnobook_content1,
+#hovnobook_tab2:checked ~ .hovnobook_main > .hovnobook_content2,
+#hovnobook_tab3:checked ~ .hovnobook_main > .hovnobook_content3
+                        {
+                            display: block;
+                        }
+                    </style>
         
         
             <link rel="stylesheet" href="style.css"/>
         
         
     </head>
-<body class="hovnobook-body">
-<div class="hovnobook_tabs_container">
-<label class="hovnobook_tab_label" for="hovnobook_tab1">Button</label><label class="hovnobook_tab_label" for="hovnobook_tab2">Media object</label><label class="hovnobook_tab_label" for="hovnobook_tab3">Date picker</label>
+<body>
+<input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab1" checked><input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab2"><input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab3"><div class="hovnobook_tabs_container">
+<label for="hovnobook_tab1" class="hovnobook_tab_label hovnobook_tab_label1">Button</label><label for="hovnobook_tab2" class="hovnobook_tab_label hovnobook_tab_label2">Media object</label><label for="hovnobook_tab3" class="hovnobook_tab_label hovnobook_tab_label3">Date picker</label>
 </div>
-<main class="hovnobook_main"><input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab1" checked><div class="hovnobook_content" id="">
-<h1 class="hovnobook_h1">Button</h1>
-<h2 class="hovnobook_h2">Klasicky button</h2>
-<div class="hovnobook_html"><style>
-                    .fff {
-                        color: green;
-                    }
-                </style><button id="button" class="hoffdsfsafvnobutton">Ahoj</button><button id="button" class="hoffdsfsafvnobutton"data-hover="true">Button hovered</button><script>
-                    console.log('ahojfsdfsfsafs');
-                    var ahoj = function() {
-                        var vvv = 1;
-                        console.log(vvv);
-                    };
-                    ahoj();
-                </script></div>
-<div class="hovnobook_code"><span class="nt">&lt;style</span><span class="nt">&gt;</span>
-<div class="js">
-                    .fff {
-                        color: green;
-                    }
-                </div>
-<span class="nt">&lt;/style&gt;</span>
-<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"hoffdsfsafvnobutton"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;Ahoj
-<span class="nt">&lt;/button&gt;</span>
-<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"hoffdsfsafvnobutton"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;Button hovered
+<main class="hovnobook_main"><div id="" class="hovnobook_content hovnobook_content1">
+<h1 class="hovnobook_h1">Button</h1>Toto je button<h2 class="hovnobook_h2">Klasicky button</h2>
+<div class="hovnobook_html"><button class="btn btn-default">Default</button><script>
+					var ahoj = 1;
+					console.log(ahoj);
+				</script></div>
+<pre class="hovnobook_code"><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default"</span><span class="nt">&gt;</span>
+    Default
 <span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;script</span><span class="nt">&gt;</span>
 <div class="js">
-                    console.log('ahojfsdfsfsafs');
-                    var ahoj = function() {
-                        var vvv = 1;
-                        console.log(vvv);
-                    };
-                    ahoj();
-                </div>
+					var ahoj = 1;
+					console.log(ahoj);
+				</div>
 <span class="nt">&lt;/script&gt;</span>
-</div>
+</pre>
+<div class="hovnobook_html">
+				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
+				<code>.classa</code> Toto je moje zpicena komponenta
+			
+			
+			</div>
+<h2 class="hovnobook_h2">Klasicky button</h2>
+<div class="hovnobook_html"><button class="btn btn-action">Action</button></div>
+<pre class="hovnobook_code"><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-action"</span><span class="nt">&gt;</span>
+    Action
+<span class="nt">&lt;/button&gt;</span>
+</pre>
 <div class="hovnobook_html">
 
-                <p>fff</p>
-                <code>.classa</code> Toto je moje zpicena komponenta
-            
-            
-            </div>
+				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
+				<code>.classa</code> Toto je moje zpicena komponenta
+			
+			
+			</div>
 </div>
-<input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab2"><div class="hovnobook_content" id="">
+<div id="" class="hovnobook_content hovnobook_content2">
 <h1 class="hovnobook_h1">Media object</h1>
 <h2 class="hovnobook_h2">Klasicky pouziti media objectu</h2>
 <div class="hovnobook_html"><div class="media">
-                    <div class="media_left">
-                        <p>Media left</p>
-                    </div>
-                    <div class="media_body">
-                        Ahoj
-                    </div>
-                </div></div>
-<div class="hovnobook_code"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_left"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;p</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Media left
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/p&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_body"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ahoj
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
+					<div class="media_left">
+						<p>Media left</p>
+					</div>
+					<div class="media_body">
+						Ahoj
+					</div>
+				</div></div>
+<pre class="hovnobook_code"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;p</span><span class="nt">&gt;</span>
+            Media left
+        <span class="nt">&lt;/p&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_body"</span><span class="nt">&gt;</span>
+        Ahoj
+    <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</div>
+</pre>
 <div class="hovnobook_html">
 
-                Toto je media object
-                
-            </div>
+				Toto je media object
+				
+			</div>
 <h2 class="hovnobook_h2">Prdel</h2>
 <div class="hovnobook_html"><div class="media">
-                    <div class="media_left">
-                        <img src="prdel.png" alt="" />
-                    </div>
-                    <div class="media_body">
-                        Ahoj
-                    </div>
-                </div></div>
-<div class="hovnobook_code"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_left"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"prdel.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">/&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_body"</span><span class="nt">&gt;</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ahoj
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
+					<div class="media_left">
+						<img src="prdel.png" alt="" />
+					</div>
+					<div class="media_body">
+						Ahoj
+					</div>
+				</div></div>
+<pre class="hovnobook_code"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_left"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"prdel.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_body"</span><span class="nt">&gt;</span>
+        Ahoj
+    <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</div>
+</pre>
 <div class="hovnobook_html">
 
-                Toto je media object s obrazkem.
+				Toto je media object s obrazkem.
 
-            </div>
+			</div>
 </div>
-<input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab3"><div class="hovnobook_content" id="">
+<div id="" class="hovnobook_content hovnobook_content3">
 <h1 class="hovnobook_h1">Date picker</h1>
 <h2 class="hovnobook_h2"></h2>
 <div class="hovnobook_html"><input type="Date" /></div>
-<div class="hovnobook_code"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"Date"</span><span class="nt">/&gt;</span>
-</div>
+<pre class="hovnobook_code"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"Date"</span><span class="nt">/&gt;</span>
+</pre>
 <div class="hovnobook_html">
 
-                Toto je datepicker
+				Toto je datepicker
 
-            </div>
+			</div>
 </div></main><script>
                     function processHtml(e) {
                         if (e.children.length === 0) {
