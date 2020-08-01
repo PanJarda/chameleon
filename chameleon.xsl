@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output method="html" encoding="utf-8" indent="yes" doctype-system=""/>
     <xsl:template match="/chameleon">
 
-        <html class="hovnobook-html">
+        <html>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <title>
-                    Hovnobook
+                    Component system
                 </title>
                 <style>
                     html {
@@ -19,8 +19,8 @@
                         font-family: sans-serif;
                     }
 
-                    body,
-                    html {
+                    html,
+                    body {
                         margin: 0;
                         padding: 0;
                     }
@@ -33,7 +33,7 @@
                         padding: 10px;
                         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
                         display: block;
-                        color: #fff;
+                        color: #333;
                         cursor: pointer;
                         user-select: none;
                     }
@@ -43,10 +43,11 @@
                         color: #2652CC;
                     }
 
-                    .hovnobook_tabs_container{
+                    .hovnobook_tabs_container {
                         position: relative;
-                        background: #2652CC;
                         width: 100%;
+                        background: #fafafa;
+                        border-right: 1px solid rgba(0,0,0,.07);
                     }
 
                     .hovnobook_tab_label:hover {
@@ -71,11 +72,12 @@
 
                     @media screen and (min-width: 400px) {
                         body {
-                            padding-left: 200px;
+                            max-width: 800px;
+                            margin: 0 auto;
                         }
 
                         .hovnobook_tabs_container {
-                            width: 200px;
+                            width: 300px;
                             position: fixed;
                             left: 0;
                             bottom: 0;
@@ -85,9 +87,7 @@
                     }
                     .hovnobook_code {
                         word-break: normal;
-                        white-space: pre-line;
                         background-color: #f7f7f9;
-                        font-family: monospace;
                         padding: 2rem;
                     }
 
@@ -104,40 +104,82 @@
                         white-space: pre;
                     }
                 </style>
+                <style>
+                    <xsl:for-each select="component">
+                        <xsl:text>#hovnobook_tab</xsl:text>
+                        <xsl:value-of select="position()"/>
+                        <xsl:text>:checked ~ .hovnobook_tabs_container > .hovnobook_tab_label</xsl:text>
+                        <xsl:value-of select="position()"/>
+                        <xsl:if test="position() != count(../component)">
+                            <xsl:text>,&#xa;</xsl:text>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>
+                        {
+                            background-color: blue;
+                            color: white;
+                        }
+                    </xsl:text>
+                    <xsl:for-each select="component">
+                        <xsl:text>#hovnobook_tab</xsl:text>
+                        <xsl:value-of select="position()"/>
+                        <xsl:text>:checked ~ .hovnobook_main > .hovnobook_content</xsl:text>
+                        <xsl:value-of select="position()"/>
+                        <xsl:if test="position() != count(../component)">
+                            <xsl:text>,&#xa;</xsl:text>
+                        </xsl:if>
+                    </xsl:for-each>
+                    <xsl:text>
+                        {
+                            display: block;
+                        }
+                    </xsl:text>
+                </style>
                 <xsl:value-of select="styles" disable-output-escaping="yes"/>
             </head>
-            <body class="hovnobook-body">
+            <body>
+                <xsl:for-each select="component">
+                    <input type="radio" name="tabs" class="hovnobook_tab">
+                        <xsl:attribute name="id">
+                            <xsl:text>hovnobook_tab</xsl:text>
+                            <xsl:value-of select="position()" />
+                        </xsl:attribute>
+                        <xsl:if test="position() = 1">
+                            <xsl:attribute name="checked">
+                                <xsl:text>checked</xsl:text>
+                            </xsl:attribute>
+                        </xsl:if>
+                    </input>
+                </xsl:for-each>
                 <div class="hovnobook_tabs_container">
                     <xsl:for-each select="component">
-                        <label class="hovnobook_tab_label">
+                        <label>
                             <xsl:attribute name="for">
                                 <xsl:text>hovnobook_tab</xsl:text>
                                 <xsl:value-of select="position()"/>
                             </xsl:attribute>
-                            <xsl:value-of select="@name"/>
+                            <xsl:attribute name="class">
+                                <xsl:text>hovnobook_tab_label hovnobook_tab_label</xsl:text>
+                                <xsl:value-of select="position()"/>
+                            </xsl:attribute>
+                            <xsl:value-of select="name"/>
                         </label>
                     </xsl:for-each>
                 </div>
                 <main class="hovnobook_main">
                     <xsl:for-each select="component">
-                        <input type="radio" name="tabs" class="hovnobook_tab">
+                        <div>
                             <xsl:attribute name="id">
-                                <xsl:text>hovnobook_tab</xsl:text>
-                                <xsl:value-of select="position()" />
+                                <xsl:value-of select="../name" />
                             </xsl:attribute>
-                            <xsl:if test="position() = 1">
-                                <xsl:attribute name="checked">
-                                    <xsl:text>checked</xsl:text>
-                                </xsl:attribute>
-                            </xsl:if>
-                        </input>
-                        <div class="hovnobook_content">
-                            <xsl:attribute name="id">
-                                <xsl:value-of select="../@name" />
+                            <xsl:attribute name="class">
+                                <xsl:text>hovnobook_content hovnobook_content</xsl:text>
+                                <xsl:value-of select="position()"/>
                             </xsl:attribute>
                             <h1 class="hovnobook_h1">
-                                <xsl:value-of select="@name"/>
+                                <xsl:value-of select="name"/>
                             </h1>
+                            <xsl:value-of select="description"/>
                             <xsl:for-each select="story">
                                 <xsl:variable name="nodestring">
                                     <xsl:apply-templates select="code/*" mode="serialize"/>
@@ -153,9 +195,9 @@
                                 <div class="hovnobook_html">
                                     <xsl:value-of select="$nodestring" disable-output-escaping="yes"/>
                                 </div>
-                                <div class="hovnobook_code">
+                                <pre class="hovnobook_code">
                                     <xsl:value-of select="$syntax_highlighted" disable-output-escaping="yes"/>
-                                </div>
+                                </pre>
                                 <div class="hovnobook_html">
                                     <xsl:value-of select="description" disable-output-escaping="yes"/>
                                 </div>
@@ -256,7 +298,7 @@
         <xsl:param name="level" />
         <xsl:variable name="tabs">
             <xsl:call-template name="dup">
-                <xsl:with-param name="input"><xsl:text>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</xsl:text></xsl:with-param>
+                <xsl:with-param name="input"><xsl:text>    </xsl:text></xsl:with-param>
                 <xsl:with-param name="count" select="$level" />
             </xsl:call-template>
         </xsl:variable>
@@ -287,7 +329,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="@*" mode="highlight_syntax">
+     <xsl:template match="@*" mode="highlight_syntax">
         <xsl:if test="name() != 'hover'">
             <xsl:text> &lt;span class="na"&gt;</xsl:text>
             <xsl:value-of select="name()"/>
@@ -303,7 +345,7 @@
         <xsl:param name="level" />
         <xsl:variable name="tabs">
             <xsl:call-template name="dup">
-                <xsl:with-param name="input"><xsl:text>&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;</xsl:text></xsl:with-param>
+                <xsl:with-param name="input"><xsl:text>    </xsl:text></xsl:with-param>
                 <xsl:with-param name="count" select="$level" />
             </xsl:call-template>
         </xsl:variable>

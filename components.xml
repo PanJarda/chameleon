@@ -23,8 +23,8 @@
 			<code>
 				<button class="btn btn-default">Default</button>
 				<script>
-					var ahoj = 1;
-					console.log(ahoj);
+	<![CDATA[var ahoj = 1;
+	console.log(ahoj);]]>
 				</script>
 			</code>
 			<description><![CDATA[
