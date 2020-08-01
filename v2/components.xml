@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="chameleon.xsl" ?>
+<chameleon>
+	<styles>
+        <![CDATA[
+        
+            <link rel="stylesheet" href="style.css"/>
+        
+        ]]>
+    </styles>
+    <scripts>
+        <![CDATA[
+        
+        <script>console.log('global')</script>
+        
+        ]]>
+    </scripts>
+	<component>
+		<name>Button</name>
+		<description>Toto je button</description>
+		<story>
+			<name>Klasicky button</name>
+			<code>
+				<button class="btn btn-default">Default</button>
+				<script>
+					var ahoj = 1;
+					console.log(ahoj);
+				</script>
+			</code>
+			<description><![CDATA[
+				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
+				<code>.classa</code> Toto je moje zpicena komponenta
+			
+			]]>
+			</description>
+		</story>
+
+		<story>
+			<name>Klasicky button</name>
+			<code>
+				<button class="btn btn-action">Action</button>
+			</code>
+			<description><![CDATA[
+
+				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
+				<code>.classa</code> Toto je moje zpicena komponenta
+			
+			]]>
+			</description>
+		</story>
+
+	</component>
+
+	<component>
+		<name>Media object</name>
+		<story>
+			<name>Klasicky pouziti media objectu</name>
+			<code>
+				<div class="media">
+					<div class="media_left">
+						<p>Media left</p>
+					</div>
+					<div class="media_body">
+						Ahoj
+					</div>
+				</div>
+			</code>
+			<description><![CDATA[
+
+				Toto je media object
+				
+			]]></description>
+		</story>
+		<story>
+			<name>Prdel</name>
+			<code>
+				<div class="media">
+					<div class="media_left">
+						<img src="prdel.png" alt=""></img>
+					</div>
+					<div class="media_body">
+						Ahoj
+					</div>
+				</div>
+			</code>
+			<description><![CDATA[
+
+				Toto je media object s obrazkem.
+
+			]]></description>
+		</story>
+	</component>
+	<component>
+		<name>Date picker</name>
+		<story>
+			<code>
+				<input type="Date" />
+			</code>
+			<description><![CDATA[
+
+				Toto je datepicker
+
+			]]></description>
+		</story>
+	</component>
+</chameleon>

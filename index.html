@@ -1,0 +1,275 @@
+<!DOCTYPE html SYSTEM "">
+<html class="hovnobook-html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>
+                    Hovnobook
+                </title>
+<style>
+                    html {
+                        font-size: 62.5%;
+                    }
+
+                    body {
+                        font-size: 1.6rem;
+                        font-family: sans-serif;
+                    }
+
+                    body,
+                    html {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .hovnobook_tab {
+                        display: none;
+                    }
+
+                    .hovnobook_tab_label {
+                        position: relative;
+                        padding: 10px;
+                        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                        display: block;
+                        color: #fff;
+                        cursor: pointer;
+                        user-select: none;
+                    }
+
+                    .hovnobook_tab_label:hover {
+                        background: rgba(0, 0, 0, 0.2);
+                        color: #2652CC;
+                    }
+
+                    .hovnobook_tabs_container{
+                        position: relative;
+                        background: #2652CC;
+                        width: 100%;
+                    }
+
+                    .hovnobook_tab_label:hover {
+                        background-color: #eee;
+                    }
+
+                    .hovnobook_main {
+                        position: relative;
+                        padding: 15px;
+                        box-sizing: border-box;
+                        display: block;
+                    }
+
+                    .hovnobook_content {
+                        display: none;
+                    }
+
+                    .hovnobook_tab:checked + .hovnobook_content {
+                        display: block;
+                        animation: slide 0.5s forwards;
+                    }
+
+                    @media screen and (min-width: 400px) {
+                        body {
+                            padding-left: 200px;
+                        }
+
+                        .hovnobook_tabs_container {
+                            width: 200px;
+                            position: fixed;
+                            left: 0;
+                            bottom: 0;
+                            top: 0;
+                            overflow-y:auto;
+                        }
+                    }
+                    .hovnobook_code {
+                        word-break: normal;
+                        white-space: pre-line;
+                        background-color: #f7f7f9;
+                        font-family: monospace;
+                        padding: 2rem;
+                    }
+
+                    .nt {
+                        color: #2f6f9f;
+                    }
+                    .na {
+                        color: #4f9fcf;
+                    }
+                    .s {
+                        color: #d44950;
+                    }
+                    .js {
+                        white-space: pre;
+                    }
+                </style>
+        
+        
+            <link rel="stylesheet" href="style.css"/>
+        
+        
+    </head>
+<body class="hovnobook-body">
+<div class="hovnobook_tabs_container">
+<label class="hovnobook_tab_label" for="hovnobook_tab1">Button</label><label class="hovnobook_tab_label" for="hovnobook_tab2">Media object</label><label class="hovnobook_tab_label" for="hovnobook_tab3">Date picker</label>
+</div>
+<main class="hovnobook_main"><input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab1" checked><div class="hovnobook_content" id="">
+<h1 class="hovnobook_h1">Button</h1>
+<h2 class="hovnobook_h2">Klasicky button</h2>
+<div class="hovnobook_html"><style>
+                    .fff {
+                        color: green;
+                    }
+                </style><button id="button" class="hoffdsfsafvnobutton">Ahoj</button><button id="button" class="hoffdsfsafvnobutton"data-hover="true">Button hovered</button><script>
+                    console.log('ahojfsdfsfsafs');
+                    var ahoj = function() {
+                        var vvv = 1;
+                        console.log(vvv);
+                    };
+                    ahoj();
+                </script></div>
+<div class="hovnobook_code"><span class="nt">&lt;style</span><span class="nt">&gt;</span>
+<div class="js">
+                    .fff {
+                        color: green;
+                    }
+                </div>
+<span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"hoffdsfsafvnobutton"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;Ahoj
+<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"button"</span> <span class="na">class=</span><span class="s">"hoffdsfsafvnobutton"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;Button hovered
+<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;script</span><span class="nt">&gt;</span>
+<div class="js">
+                    console.log('ahojfsdfsfsafs');
+                    var ahoj = function() {
+                        var vvv = 1;
+                        console.log(vvv);
+                    };
+                    ahoj();
+                </div>
+<span class="nt">&lt;/script&gt;</span>
+</div>
+<div class="hovnobook_html">
+
+                <p>fff</p>
+                <code>.classa</code> Toto je moje zpicena komponenta
+            
+            
+            </div>
+</div>
+<input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab2"><div class="hovnobook_content" id="">
+<h1 class="hovnobook_h1">Media object</h1>
+<h2 class="hovnobook_h2">Klasicky pouziti media objectu</h2>
+<div class="hovnobook_html"><div class="media">
+                    <div class="media_left">
+                        <p>Media left</p>
+                    </div>
+                    <div class="media_body">
+                        Ahoj
+                    </div>
+                </div></div>
+<div class="hovnobook_code"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_left"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;p</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Media left
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/p&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_body"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ahoj
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</div>
+<div class="hovnobook_html">
+
+                Toto je media object
+                
+            </div>
+<h2 class="hovnobook_h2">Prdel</h2>
+<div class="hovnobook_html"><div class="media">
+                    <div class="media_left">
+                        <img src="prdel.png" alt="" />
+                    </div>
+                    <div class="media_body">
+                        Ahoj
+                    </div>
+                </div></div>
+<div class="hovnobook_code"><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_left"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"prdel.png"</span> <span class="na">alt=</span><span class="s">""</span><span class="nt">/&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"media_body"</span><span class="nt">&gt;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ahoj
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</div>
+<div class="hovnobook_html">
+
+                Toto je media object s obrazkem.
+
+            </div>
+</div>
+<input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab3"><div class="hovnobook_content" id="">
+<h1 class="hovnobook_h1">Date picker</h1>
+<h2 class="hovnobook_h2"></h2>
+<div class="hovnobook_html"><input type="Date" /></div>
+<div class="hovnobook_code"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"Date"</span><span class="nt">/&gt;</span>
+</div>
+<div class="hovnobook_html">
+
+                Toto je datepicker
+
+            </div>
+</div></main><script>
+                    function processHtml(e) {
+                        if (e.children.length === 0) {
+                            console.log('processing html');
+                            e.innerHTML = e.innerText;
+                            var scripts = e.getElementsByTagName('script');
+                            for (var s of scripts) {
+                                eval(s.innerText);
+                            }
+                        }
+                    }
+                    window.onload = function() {
+                        var collection = document.getElementsByClassName('hovnobook_html');
+                        for (var e of collection) {
+                            processHtml(e);
+                        }
+                        collection = document.getElementsByClassName('hovnobook_code');
+                        for (e of collection)
+                            processHtml(e);
+
+                        /* adds [data-hover="true"] styles to enable hover="true" */
+                        var id = 'simulatedStyle';
+
+                        var generateEvent = function(selector) {
+                            var style = "";
+                            for (var i in document.styleSheets) {
+                                var rules = document.styleSheets[i].cssRules;
+                                for (var r in rules) {
+                                    if(rules[r].cssText && rules[r].selectorText){
+                                        if(rules[r].selectorText.indexOf(selector) > -1){
+                                            var regex = new RegExp(selector,"g")
+                                            var text = rules[r].cssText.replace(regex,"[data-hover=\"true\"]");
+                                            style += text+"\n";
+                                        }
+                                    }
+                                }
+                            }
+                            var el = document.createElement('style');
+                            el.id = id;
+                            el.innerHTML = style;
+                            document.head.appendChild(el);
+                        };
+
+                        generateEvent(":hover");
+                    };
+                </script>
+        
+        
+        <script>console.log('global')</script>
+        
+        
+    </body>
+</html>

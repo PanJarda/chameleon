@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="chameleon.xsl" ?>
-<chameleon style="style.css">
+<!-- usage: bud to posles do browseru jako index.xml a deje se magick nebo 
+    zavolas `xsltproc index.xml > index.hml` -->
+<chameleon>
+    <styles>
+        <![CDATA[
+        
+            <link rel="stylesheet" href="style.css"/>
+        
+        ]]>
+    </styles>
+    <scripts>
+        <![CDATA[
+        
+        <script>console.log('global')</script>
+        
+        ]]>
+    </scripts>
     <component name="Button">
         <story>
             <name>Klasicky button</name>
@@ -17,7 +33,7 @@
                     var ahoj = function() {
                         var vvv = 1;
                         console.log(vvv);
-                    }
+                    };
                     ahoj();
                 </script>
             </code>
