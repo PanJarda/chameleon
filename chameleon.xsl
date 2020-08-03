@@ -137,9 +137,6 @@
                     </xsl:text>
                 </style>
                 <xsl:value-of select="styles" disable-output-escaping="yes"/>
-                <xsl:for-each select="component">
-                    <xsl:value-of select="styles" disable-output-escaping="yes"/>
-                </xsl:for-each>
             </head>
             <body>
                 <xsl:for-each select="component">
@@ -174,12 +171,29 @@
                     <xsl:for-each select="component">
                         <div>
                             <xsl:attribute name="id">
-                                <xsl:value-of select="../name" />
+                                <xsl:text>hovnobook_content</xsl:text>
+                                <xsl:value-of select="position()" />
                             </xsl:attribute>
                             <xsl:attribute name="class">
                                 <xsl:text>hovnobook_content hovnobook_content</xsl:text>
                                 <xsl:value-of select="position()"/>
                             </xsl:attribute>
+                            <xsl:for-each select="link">
+                                <link disabled="false">
+                                    <xsl:attribute name="title">
+                                        <xsl:value-of select="@title"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="href">
+                                        <xsl:value-of select="@href"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="media">
+                                        <xsl:value-of select="@media"/>
+                                    </xsl:attribute>
+                                    <xsl:attribute name="rel">
+                                        <xsl:value-of select="@rel"/>
+                                    </xsl:attribute>
+                                </link>
+                            </xsl:for-each>
                             <h1 class="hovnobook_h1">
                                 <xsl:value-of select="name"/>
                             </h1>
@@ -255,6 +269,30 @@
                         };
 
                         generateEvent(":hover");
+
+                        // enabling/disabling component styleSheets
+                        var checkboxes = document.getElementsByName('tabs');
+                        for (var cb of checkboxes) {
+                            cb.addEventListener('change', function(e) {
+                                //disable old styles
+                                var contents = document.getElementsByClassName('hovnobook_content');
+                                for ( var c of contents) {
+                                    var links = c.getElementsByTagName('link');
+                                    for (var l of links ) {
+                                        l.disabled = true;
+                                    }
+                                }
+
+                                var id = e.target.id;
+                                var contentId = 'hovnobook_content' + id.substring('hovnobook_tab'.length);
+                                var content = document.getElementById(contentId);
+                                console.log(contentId);
+                                var links = content.getElementsByTagName('link');
+                                for (var link of links) {
+                                    link.disabled = false;
+                                }
+                            });
+                        }
                     };
                 </script>
                 <xsl:value-of select="scripts" disable-output-escaping="yes"/>
