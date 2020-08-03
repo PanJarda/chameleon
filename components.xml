@@ -33,9 +33,7 @@
 			<description><![CDATA[
 				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
 				<code>.classa</code> Toto je moje zpicena komponenta
-			
-			]]>
-			</description>
+			]]></description>
 		</story>
 
 		<story>
