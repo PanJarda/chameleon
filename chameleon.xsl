@@ -254,8 +254,8 @@
 
                         var generateEvent = function(selector) {
                             var style = "";
-                            for (var i in document.styleSheets) {
-                                var rules = document.styleSheets[i].cssRules;
+                            for (var s of document.styleSheets) {
+                                var rules = s.cssRules;
                                 for (var r in rules) {
                                     if(rules[r].cssText &amp;&amp; rules[r].selectorText){
                                         if(rules[r].selectorText.indexOf(selector) > -1){
