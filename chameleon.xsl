@@ -261,7 +261,6 @@
                                 if (link &amp;&amp; s.href !== link.href)
                                     continue;
                                 try {
-                                    console.log(s);
                                     var rules = s.cssRules;
                                     for (var r in rules) {
                                         if(rules[r].cssText &amp;&amp; rules[r].selectorText){
@@ -290,6 +289,11 @@
                         var checkboxes = document.getElementsByName('tabs');
                         for (var cb of checkboxes) {
                             cb.addEventListener('change', function(e) {
+                                
+                                // remove body hover styles
+                                var el = document.getElementById('body-styles');
+                                el.innerHTML = '';
+
                                 //disable old styles
                                 var contents = document.getElementsByClassName('hovnobook_content');
                                 for ( var c of contents) {
