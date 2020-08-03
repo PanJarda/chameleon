@@ -179,7 +179,11 @@
                                 <xsl:value-of select="position()"/>
                             </xsl:attribute>
                             <xsl:for-each select="link">
-                                <link disabled="false">
+                                <link>
+                                    <xsl:if test="position() != 1">
+                                        <xsl:attribute name="disabled">
+                                        </xsl:attribute>
+                                    </xsl:if>
                                     <xsl:attribute name="title">
                                         <xsl:value-of select="@title"/>
                                     </xsl:attribute>
@@ -270,7 +274,6 @@
 
                         generateEvent(":hover");
 
-                        // enabling/disabling component styleSheets
                         var checkboxes = document.getElementsByName('tabs');
                         for (var cb of checkboxes) {
                             cb.addEventListener('change', function(e) {
