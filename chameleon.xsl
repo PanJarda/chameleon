@@ -169,6 +169,7 @@
                 </div>
                 <main class="hovnobook_main">
                     <xsl:for-each select="component">
+                        <xsl:variable name="parent-position" select="position()" />
                         <div>
                             <xsl:attribute name="id">
                                 <xsl:text>hovnobook_content</xsl:text>
@@ -180,7 +181,7 @@
                             </xsl:attribute>
                             <xsl:for-each select="link">
                                 <link>
-                                    <xsl:if test="position() != 1">
+                                    <xsl:if test="$parent-position != 1">
                                         <xsl:attribute name="disabled">
                                         </xsl:attribute>
                                     </xsl:if>
