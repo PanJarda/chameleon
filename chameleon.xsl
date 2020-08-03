@@ -89,6 +89,7 @@
                         word-break: normal;
                         background-color: #f7f7f9;
                         padding: 2rem;
+                        border-radius: .8rem;
                     }
 
                     .nt {
@@ -136,6 +137,9 @@
                     </xsl:text>
                 </style>
                 <xsl:value-of select="styles" disable-output-escaping="yes"/>
+                <xsl:for-each select="component">
+                    <xsl:value-of select="styles" disable-output-escaping="yes"/>
+                </xsl:for-each>
             </head>
             <body>
                 <xsl:for-each select="component">
@@ -189,9 +193,11 @@
                                         <xsl:with-param name="level">0</xsl:with-param>
                                     </xsl:apply-templates>
                                 </xsl:variable>
-                                <h2 class="hovnobook_h2">
-                                    <xsl:value-of select="name"/>
-                                </h2>
+                                <xsl:if test="name">
+                                    <h2 class="hovnobook_h2">
+                                        <xsl:value-of select="name"/>
+                                    </h2>
+                                </xsl:if>
                                 <div class="hovnobook_html">
                                     <xsl:value-of select="$nodestring" disable-output-escaping="yes"/>
                                 </div>

@@ -16,6 +16,9 @@
         ]]>
     </scripts>
 	<component>
+		<styles><![CDATA[
+            <link rel="stylesheet" href="button.css"/>
+        ]]></styles>
 		<name>Button</name>
 		<description>Toto je button</description>
 		<story>
