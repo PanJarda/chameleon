@@ -137,6 +137,10 @@
                     </xsl:text>
                 </style>
                 <xsl:value-of select="styles" disable-output-escaping="yes"/>
+                <style id="simulatedStyle">
+                </style>
+                <style id="body-styles">
+                </style>
             </head>
             <body>
                 <xsl:for-each select="component">
@@ -251,29 +255,37 @@
                             processHtml(e);
 
                         /* adds [data-hover="true"] styles to enable hover="true" */
-                        var id = 'simulatedStyle';
-
-                        var generateEvent = function(selector) {
+                        var generateEvent = function(selector, link) {
                             var style = "";
                             for (var s of document.styleSheets) {
-                                var rules = s.cssRules;
-                                for (var r in rules) {
-                                    if(rules[r].cssText &amp;&amp; rules[r].selectorText){
-                                        if(rules[r].selectorText.indexOf(selector) > -1){
-                                            var regex = new RegExp(selector,"g")
-                                            var text = rules[r].cssText.replace(regex,"[data-hover=\"true\"]");
-                                            style += text+"\n";
+                                if (link &amp;&amp; s.href !== link.href)
+                                    continue;
+                                try {
+                                    console.log(s);
+                                    var rules = s.cssRules;
+                                    for (var r in rules) {
+                                        if(rules[r].cssText &amp;&amp; rules[r].selectorText){
+                                            if(rules[r].selectorText.indexOf(selector) > -1){
+                                                var regex = new RegExp(selector,"g")
+                                                var text = rules[r].cssText.replace(regex,"[data-hover=\"true\"]");
+                                                style += text+"\n";
+                                            }
                                         }
                                     }
+                                } catch (e) {
+                                    
                                 }
                             }
-                            var el = document.createElement('style');
-                            el.id = id;
+
+                            var el;
+                            if (link) {
+                                el = document.getElementById('body-styles');
+                            } else {
+                                el = document.getElementById('simulatedStyle');
+                            }
                             el.innerHTML = style;
-                            document.head.appendChild(el);
                         };
 
-                        generateEvent(":hover");
 
                         var checkboxes = document.getElementsByName('tabs');
                         for (var cb of checkboxes) {
@@ -293,9 +305,14 @@
                                 var links = content.getElementsByTagName('link');
                                 for (var link of links) {
                                     link.disabled = false;
+                                    link.addEventListener('load', function() {
+                                        generateEvent(":hover", link)
+                                    });
                                 }
                             });
                         }
+
+                        generateEvent(":hover");
                     };
                 </script>
                 <xsl:value-of select="scripts" disable-output-escaping="yes"/>
