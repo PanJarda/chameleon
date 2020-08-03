@@ -289,7 +289,6 @@
                                 var id = e.target.id;
                                 var contentId = 'hovnobook_content' + id.substring('hovnobook_tab'.length);
                                 var content = document.getElementById(contentId);
-                                console.log(contentId);
                                 var links = content.getElementsByTagName('link');
                                 for (var link of links) {
                                     link.disabled = false;
