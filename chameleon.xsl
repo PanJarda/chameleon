@@ -337,7 +337,17 @@
                 <xsl:text>&gt;</xsl:text>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:text> /&gt;</xsl:text>
+                <xsl:choose>
+                    <xsl:when test="name() = 'img' or (name() = 'hr') or (name() = 'br') or (name() = 'input') or (name() = 'basefont')">
+                        <xsl:text> /&gt;</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:text>&gt;</xsl:text>
+                        <xsl:text>&lt;/</xsl:text>
+                        <xsl:value-of select="name()"/>
+                        <xsl:text>&gt;</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>

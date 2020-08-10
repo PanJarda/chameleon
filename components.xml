@@ -15,40 +15,6 @@
         
         ]]>
     </scripts>
-	<component>
-        <link rel="stylesheet" href="button.css" title="ahoj" />
-		<name>Button</name>
-		<description>Toto je button</description>
-		<story>
-			<name>Klasicky button</name>
-			<code>
-				<button class="btn btn-default">Default</button>
-				<script>
-					var ahoj = 1;
-					console.log(ahoj);
-				</script>
-			</code>
-			<description><![CDATA[
-				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
-				<code>.classa</code> Toto je moje zpicena komponenta
-			]]></description>
-		</story>
-
-		<story>
-			<name>Klasicky button</name>
-			<code>
-				<button class="btn btn-action">Action</button>
-			</code>
-			<description><![CDATA[
-
-				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
-				<code>.classa</code> Toto je moje zpicena komponenta
-			
-			]]>
-			</description>
-		</story>
-
-	</component>
 
 	<component>
 		<name>Media object</name>
@@ -88,6 +54,41 @@
 
 			]]></description>
 		</story>
+	</component>
+	<component>
+		<link rel="stylesheet" href="button.css"/>
+		<name>Button</name>
+		<description>Toto je button</description>
+		<story>
+			<name>Klasicky button</name>
+			<code>
+				<button class="btn btn-default">Default</button>
+				<button class="btn btn-default" hover="true">Default</button>
+				<script>
+					var ahoj = 1;
+					console.log(ahoj);
+				</script>
+			</code>
+			<description><![CDATA[
+				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
+				<code>.classa</code> Toto je moje zpicena komponenta
+			]]></description>
+		</story>
+
+		<story>
+			<name>Klasicky button</name>
+			<code>
+				<button class="btn btn-action">Action</button>
+			</code>
+			<description><![CDATA[
+
+				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
+				<code>.classa</code> Toto je moje zpicena komponenta
+			
+			]]>
+			</description>
+		</story>
+
 	</component>
 	<component>
 		<name>Date picker</name>

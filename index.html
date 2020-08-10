@@ -121,20 +121,21 @@
             <link rel="stylesheet" href="style.css"/>
         
         
-    
-            <link rel="stylesheet" href="button.css"/>
-        </head>
+    </head>
 <body>
 <input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab1" checked><input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab2"><input type="radio" name="tabs" class="hovnobook_tab" id="hovnobook_tab3"><div class="hovnobook_tabs_container">
 <label for="hovnobook_tab1" class="hovnobook_tab_label hovnobook_tab_label1">Button</label><label for="hovnobook_tab2" class="hovnobook_tab_label hovnobook_tab_label2">Media object</label><label for="hovnobook_tab3" class="hovnobook_tab_label hovnobook_tab_label3">Date picker</label>
 </div>
-<main class="hovnobook_main"><div id="" class="hovnobook_content hovnobook_content1">
+<main class="hovnobook_main"><div id="hovnobook_content1" class="hovnobook_content hovnobook_content1">
 <h1 class="hovnobook_h1">Button</h1>Toto je button<h2 class="hovnobook_h2">Klasicky button</h2>
-<div class="hovnobook_html"><button class="btn btn-default">Default</button><script>
+<div class="hovnobook_html"><button class="btn btn-default">Default</button><button class="btn btn-default"data-hover="true">Default</button><script>
 					var ahoj = 1;
 					console.log(ahoj);
 				</script></div>
 <pre class="hovnobook_code"><span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default"</span><span class="nt">&gt;</span>
+    Default
+<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn btn-default"</span><span class="nt">&gt;</span>
     Default
 <span class="nt">&lt;/button&gt;</span>
 <span class="nt">&lt;script</span><span class="nt">&gt;</span>
@@ -147,8 +148,6 @@
 <div class="hovnobook_html">
 				<p>Use the button classes on an <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code> rather than <code>input</code> element.</p>
 				<code>.classa</code> Toto je moje zpicena komponenta
-			
-			
 			</div>
 <h2 class="hovnobook_h2">Klasicky button</h2>
 <div class="hovnobook_html"><button class="btn btn-action">Action</button></div>
@@ -164,7 +163,7 @@
 			
 			</div>
 </div>
-<div id="" class="hovnobook_content hovnobook_content2">
+<div id="hovnobook_content2" class="hovnobook_content hovnobook_content2">
 <h1 class="hovnobook_h1">Media object</h1>
 <h2 class="hovnobook_h2">Klasicky pouziti media objectu</h2>
 <div class="hovnobook_html"><div class="media">
@@ -215,7 +214,7 @@
 
 			</div>
 </div>
-<div id="" class="hovnobook_content hovnobook_content3">
+<div id="hovnobook_content3" class="hovnobook_content hovnobook_content3">
 <h1 class="hovnobook_h1">Date picker</h1>
 <div class="hovnobook_html"><input type="Date" /></div>
 <pre class="hovnobook_code"><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"Date"</span><span class="nt">/&gt;</span>
@@ -250,16 +249,20 @@
 
                         var generateEvent = function(selector) {
                             var style = "";
-                            for (var i in document.styleSheets) {
-                                var rules = document.styleSheets[i].cssRules;
-                                for (var r in rules) {
-                                    if(rules[r].cssText && rules[r].selectorText){
-                                        if(rules[r].selectorText.indexOf(selector) > -1){
-                                            var regex = new RegExp(selector,"g")
-                                            var text = rules[r].cssText.replace(regex,"[data-hover=\"true\"]");
-                                            style += text+"\n";
+                            for (var s of document.styleSheets) {
+                                try {
+                                    var rules = s.cssRules;
+                                    for (var r in rules) {
+                                        if(rules[r].cssText && rules[r].selectorText){
+                                            if(rules[r].selectorText.indexOf(selector) > -1){
+                                                var regex = new RegExp(selector,"g")
+                                                var text = rules[r].cssText.replace(regex,"[data-hover=\"true\"]");
+                                                style += text+"\n";
+                                            }
                                         }
                                     }
+                                } catch (e) {
+                                    
                                 }
                             }
                             var el = document.createElement('style');
@@ -269,6 +272,28 @@
                         };
 
                         generateEvent(":hover");
+
+                        var checkboxes = document.getElementsByName('tabs');
+                        for (var cb of checkboxes) {
+                            cb.addEventListener('change', function(e) {
+                                //disable old styles
+                                var contents = document.getElementsByClassName('hovnobook_content');
+                                for ( var c of contents) {
+                                    var links = c.getElementsByTagName('link');
+                                    for (var l of links ) {
+                                        l.disabled = true;
+                                    }
+                                }
+
+                                var id = e.target.id;
+                                var contentId = 'hovnobook_content' + id.substring('hovnobook_tab'.length);
+                                var content = document.getElementById(contentId);
+                                var links = content.getElementsByTagName('link');
+                                for (var link of links) {
+                                    link.disabled = false;
+                                }
+                            });
+                        }
                     };
                 </script>
         
